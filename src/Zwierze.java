@@ -12,12 +12,12 @@ public class Zwierze extends Organizm {
 
     int atak(Reference<Organizm> napotkany)
     {
-        int isAlive;
+        int isAlive = 0;
         if(napotkany.get().getLabel()==this.label){
             rozmnazanie();
             isAlive = 1;
         }else{
-            return napotkany.get().kolizja(this);          //@TODO Pass by Reference
+            //return napotkany.get().kolizja(this);          //@TODO Pass by Reference
         }
         return isAlive;
     }

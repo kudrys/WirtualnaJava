@@ -14,3 +14,4 @@ public class Main {
         wypisz();
     }
 }
+//@TODO potestowac metody
