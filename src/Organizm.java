@@ -88,6 +88,8 @@ public class Organizm {
     void activate(){
         active = true;
     }
+    void rozmnazanie(){
+    }
     /** akcja:
      * flag 1 - organizm to roslina
      * flag 2 - napotkany to NULL
@@ -103,7 +105,7 @@ public class Organizm {
             if(napotkany==null){
                 return 2;
             }
-            if(getLabel()==napotkany.get().getLabel()){
+            if (getLabel() == napotkany.get().getLabel()) {  //@TODO swiecenie ogarnac
                 return 3;
             }
             return 4;
