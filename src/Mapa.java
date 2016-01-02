@@ -7,7 +7,7 @@ public class Mapa {
     //fields
     protected int szerokosc;
     protected int wysokosc;
-    Reference<Organizm> [][] organizmyTab;
+    Organizm [][] organizmyTab;
     //getters
     public int getSzerokosc() {
         return szerokosc;
@@ -19,6 +19,18 @@ public class Mapa {
     public Mapa(int szerokosc, int wysokosc){
         this.szerokosc = szerokosc;
         this.wysokosc = wysokosc;
-        //organizmyTab = new Reference<Organizm> [szerokosc][wysokosc];  //@TODO array
+        organizmyTab = new Organizm [szerokosc][wysokosc];  //@TODO array
+    }
+    public void rysujSwiat(){
+        for(int i=0;i<wysokosc;i++){
+            for(int j=0;j<szerokosc;j++){
+                if(organizmyTab[i][j]==null){
+                    System.out.print("*");
+                }else{
+                    System.out.print(organizmyTab[i][j].getLabel());
+                }
+            }
+            System.out.println();
+        }
     }
 }
