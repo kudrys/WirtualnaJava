@@ -3,7 +3,7 @@ import java.lang.ref.Reference;
 /**
  * Created by RYchu on 2015-12-29.
  */
-public class Lew extends Organizm {
+public class Lew extends Zwierze {
 
     public Lew()
     {
