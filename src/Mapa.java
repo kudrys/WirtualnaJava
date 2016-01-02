@@ -24,10 +24,11 @@ public class Mapa {
     public void rysujSwiat(){
         for(int i=0;i<wysokosc;i++){
             for(int j=0;j<szerokosc;j++){
-                if(organizmyTab[i][j]==null){
+                Organizm aktualny = organizmyTab[j][i];
+                if(aktualny==null){
                     System.out.print(".");
                 }else{
-                    System.out.print(organizmyTab[i][j].getLabel());
+                    System.out.print(aktualny.getLabel());
                 }
             }
             System.out.println();
