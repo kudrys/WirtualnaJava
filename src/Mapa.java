@@ -25,7 +25,7 @@ public class Mapa {
         for(int i=0;i<wysokosc;i++){
             for(int j=0;j<szerokosc;j++){
                 if(organizmyTab[i][j]==null){
-                    System.out.print("***");
+                    System.out.print(".");
                 }else{
                     System.out.print(organizmyTab[i][j].getLabel());
                 }
