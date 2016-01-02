@@ -4,6 +4,13 @@
 public class Swiat {
     public Mapa m;
 
+    public void wsadzZWartosci(int value, char zwierzakAscii){
+        int x = value%m.szerokosc;
+        int y = value/m.szerokosc;
+
+        wsadzZwierzakaDoSwiata(x,y,zwierzakAscii);
+    }
+
     public void wsadzZwierzakaDoSwiata(int x, int y, char zwierzakAscii) {
         Organizm organizmWsadzany;
 
