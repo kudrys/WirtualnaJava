@@ -1,19 +1,21 @@
+import java.util.Arrays;
+
 /**
  * Created by RYchu on 2015-12-18.
  */
 
 public class Main {
 
-    private int numer;
-    public int wiek;
-    protected int kek;
-    public static void wypisz(){
-        System.out.println("Hello world");
-    }
     public static void main(String[] args){
-        Lew lew = new Lew();
-        System.out.print(lew.getSila() + 1);
-        wypisz();
+        Swiat s = new Swiat(2,5);
+        //s.wsadzZwierzakaDoMapy(5,1,'L');
+        //s.wsadzZWartosci(0,'L');
+        s.m.rysujSwiat();
+        int temp[] = s.losowanieWartosci(2);
+        System.out.println(Arrays.toString(temp));
+        System.out.println(Arrays.toString(s.losowanieCharow(2)));
+        s.wsadzWylosowaneZwierzaki();
+        s.m.rysujSwiat();
     }
 }
 //@TODO potestowac metody

@@ -1,17 +1,27 @@
+import java.util.Arrays;
+import java.util.Random;
+import java.util.stream.IntStream;
+
 /**
  * Created by RYchu on 2015-12-18.
  */
 public class Swiat {
     public Mapa m;
+    public String gatunki;
 
-    public void wsadzZWartosci(int value, char zwierzakAscii){
-        int x = value%m.szerokosc;
-        int y = value/m.szerokosc;
-
-        wsadzZwierzakaDoSwiata(x,y,zwierzakAscii);
+    public Swiat(int x, int y){
+        m = new Mapa(x,y);
+        gatunki = "LLLLLLLLLLLLLLLLLLL"; //@TODO Zamienic jak zwierzaczki beda gotowe na to: "CDGLOTWZ"
     }
 
-    public void wsadzZwierzakaDoSwiata(int x, int y, char zwierzakAscii) {
+    public void wsadzZWartosci(int value, char zwierzakAscii){
+        int x = value%m.getSzerokosc();
+        int y = value/m.getSzerokosc();
+        System.out.println("x:" + x + " y:" + y);
+        wsadzZwierzakaDoMapy(x, y, zwierzakAscii);
+    }
+
+    public void wsadzZwierzakaDoMapy(int x, int y, char zwierzakAscii) {
         Organizm organizmWsadzany;
 
         switch (zwierzakAscii) {
@@ -28,4 +38,51 @@ public class Swiat {
         if(organizmWsadzany!=null)
             organizmWsadzany.przypiszXY(x, y);
     }
+    public int[] losowanieWartosci(int dzielnik){
+        Random r = new Random();
+        int tabSize = m.getSzerokosc() * m.getWysokosc();
+        int iloscWylosowanych = (tabSize)/dzielnik;
+        int values[]=IntStream.range(0,tabSize).toArray();
+
+        for(int i=0;i<iloscWylosowanych;i++){
+            int lastIndex = tabSize-1-i;
+            int randomValue = r.nextInt(lastIndex+1-i);
+            //swap
+            int temp = values[lastIndex];
+            values[lastIndex] = values[randomValue];
+            values[randomValue] = temp;
+        }
+
+        return Arrays.copyOfRange(values, tabSize-iloscWylosowanych, tabSize);
+    }
+
+    public char[] losowanieCharow(int dzielnik){
+        Random r = new Random();
+        char zwierzakiDoWylosowania[]=gatunki.toCharArray();
+        int iloscGatunkow = zwierzakiDoWylosowania.length;
+        int tabSize = m.getSzerokosc() * m.getWysokosc();
+        int iloscWylosowanych = (tabSize)/dzielnik;
+        char wylosowaneChary[] = new char[iloscWylosowanych];
+
+        for (int i = 0; i < iloscWylosowanych; i++) {
+            int indexWylosowany = r.nextInt(iloscGatunkow);
+            wylosowaneChary[i] = zwierzakiDoWylosowania[indexWylosowany];
+        }
+        return wylosowaneChary;
+    }
+
+    public void wsadzWylosowaneZwierzaki(){
+        int dzielnik = 5;
+        int values[] = losowanieWartosci(dzielnik);
+        char chary[] = losowanieCharow(dzielnik);
+
+        for (int i = 0; i <values.length ; i++) {
+            wsadzZWartosci(values[i],chary[i]);
+        }
+    }
+
+
+
+
+
 }

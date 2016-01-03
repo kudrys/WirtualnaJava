@@ -19,7 +19,7 @@ public class Mapa {
     public Mapa(int szerokosc, int wysokosc){
         this.szerokosc = szerokosc;
         this.wysokosc = wysokosc;
-        organizmyTab = new Organizm [szerokosc][wysokosc];  //@TODO array
+        organizmyTab = new Organizm [szerokosc][wysokosc];
     }
     public void rysujSwiat(){
         for(int i=0;i<wysokosc;i++){

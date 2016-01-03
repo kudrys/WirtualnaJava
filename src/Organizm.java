@@ -105,7 +105,7 @@ public class Organizm {
             if(napotkany==null){
                 return 2;
             }
-            if (getLabel() == napotkany.get().getLabel()) {  //@TODO swiecenie ogarnac
+            if (getLabel() == napotkany.get().getLabel()) {
                 return 3;
             }
             return 4;
