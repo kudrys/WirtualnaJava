@@ -12,7 +12,7 @@ public class Lew extends Zwierze {
         inicjatywa = 7;
     }
 
-    int kolizja(Reference<Organizm> attacking)
+    public int kolizja(Reference<Organizm> attacking)
     {
         if(attacking.get().getSila()<5)
             return 3;

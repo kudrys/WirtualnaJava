@@ -11,9 +11,16 @@ public class Swiat {
 
     public Swiat(int x, int y){
         m = new Mapa(x,y);
-        gatunki = "LLLLLLLLLLLLLLLLLLL"; //@TODO Zamienic jak zwierzaczki beda gotowe na to: "CDGLOTWZ"
+        gatunki = "CDGLOTWZ"; //@TODO Zamienic jak zwierzaczki beda gotowe na to: "CDGLOTWZ"
     }
 
+    public int getXfromValue(int value) {
+        return value / m.getSzerokosc();
+    }
+
+    public int getYfromValue(int value) {
+        return value % m.getWysokosc();
+    }
     public void wsadzZWartosci(int value, char zwierzakAscii){
         int x = value%m.getSzerokosc();
         int y = value/m.getSzerokosc();
@@ -27,6 +34,34 @@ public class Swiat {
         switch (zwierzakAscii) {
             case 'L': {
                 organizmWsadzany = new Lew();
+                break;
+            }
+            case 'W': {
+                organizmWsadzany = new Wilk();
+                break;
+            }
+            case 'C': {
+                organizmWsadzany = new Ciern();
+                break;
+            }
+            case 'D': {
+                organizmWsadzany = new Dinozaur();
+                break;
+            }
+            case 'G': {
+                organizmWsadzany = new Guarana();
+                break;
+            }
+            case 'O': {
+                organizmWsadzany = new Owca();
+                break;
+            }
+            case 'T': {
+                organizmWsadzany = new Trawa();
+                break;
+            }
+            case 'Z': {
+                organizmWsadzany = new Zolw();
                 break;
             }
             default:{
