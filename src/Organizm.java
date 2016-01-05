@@ -69,17 +69,17 @@ public class Organizm {
      *  1 - att zyje (01)
      *  3 - obydwoje zyja (11)
      */
-    int whoDied(Reference<Organizm> attacking){
+    int whoDied(Organizm attacking){
         int defAlive = 1;
         int attAlive = 1;
-        if (this.sila <= attacking.get().getSila()){
+        if (this.sila <= attacking.getSila()){
             defAlive = 0;
         }else{
             attAlive = 0;
         }
         return defAlive*2+attAlive;
     }
-    int kolizja(Reference<Organizm> attacking){
+    int kolizja(Organizm attacking){
         return whoDied(attacking);
     }
     void increaseSila(int v){

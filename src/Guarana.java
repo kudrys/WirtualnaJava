@@ -9,8 +9,8 @@ public class Guarana extends Roslina {
         sila = 0;
         szansa = 40;
     }
-    public int kolizja(Reference<Organizm>  attacking) {
-        attacking.get().increaseSila(3);
+    public int kolizja(Organizm attacking) {
+        attacking.increaseSila(3);
         return whoDied(attacking);
     }
 }

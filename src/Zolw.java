@@ -10,8 +10,8 @@ public class Zolw extends  Zwierze{
         label = 'Z';
         szansa = 75;
     }
-    public int kolizja(Reference<Organizm> attacking) {
-        if(attacking.get().getSila()<5)
+    public int kolizja(Organizm attacking) {
+        if(attacking.getSila()<5)
             return 3;
         else
             return whoDied(attacking);

@@ -11,7 +11,7 @@ public class Swiat {
 
     public Swiat(int x, int y){
         m = new Mapa(x,y);
-        gatunki = "CDGLOTWZ"; //@TODO Zamienic jak zwierzaczki beda gotowe na to: "CDGLOTWZ"
+        gatunki = "CDGLOTWZ";
     }
 
     public int getXfromValue(int value) {
@@ -113,6 +113,35 @@ public class Swiat {
 
         for (int i = 0; i <values.length ; i++) {
             wsadzZWartosci(values[i],chary[i]);
+        }
+    }
+    public void poruszenie(char kierunek, int x, int y) {
+        Organizm aktualny = m.organizmyTab[x][y];
+        int newX = x;
+        int newY = y;
+        switch(kierunek){
+            case 'G':{
+                newY--;
+                break;
+            }
+            case 'D':{
+                newY++;
+                break;
+            }
+            case 'P':{
+                newX++;
+                break;
+            }
+            case 'L':{
+                newX--;
+                break;
+            }
+            default: {}
+        }
+        if(newX<m.getSzerokosc() && newY<m.getWysokosc() && newX>=0 && newY>=0) {
+            m.organizmyTab[newX][newY] = m.organizmyTab[x][y];
+            m.organizmyTab[newX][newY].przypiszXY(newX, newY);
+            m.organizmyTab[x][y] = null;
         }
     }
 

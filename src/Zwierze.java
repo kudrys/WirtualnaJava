@@ -10,14 +10,14 @@ public class Zwierze extends Organizm {
         OrganizmMark ='Z';
     }
 
-    int atak(Reference<Organizm> napotkany)
+    int atak(Organizm napotkany)
     {
         int isAlive = 0;
-        if(napotkany.get().getLabel()==this.label){
+        if(napotkany.getLabel()==this.label){
             rozmnazanie();
             isAlive = 1;
         }else{
-            //return napotkany.get().kolizja(this);          //@TODO Pass by Reference
+            return napotkany.kolizja(this);
         }
         return isAlive;
     }
