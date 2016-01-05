@@ -39,7 +39,6 @@ public class Organizm {
         return szansa;
     }
     //fields
-    Reference<Organizm> next;
     protected boolean active;
     protected char label;
     protected String obrazek;
@@ -52,7 +51,6 @@ public class Organizm {
     //methods
     public Organizm(){
         szansa = 100;
-        next = null;
         active = false;
     }
     void przypiszXY(int x, int y){

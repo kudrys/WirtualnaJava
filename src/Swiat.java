@@ -7,10 +7,12 @@ import java.util.stream.IntStream;
  */
 public class Swiat {
     public Mapa m;
+    public Queue k;
     public String gatunki;
 
     public Swiat(int x, int y){
         m = new Mapa(x,y);
+        k = new Queue();
         gatunki = "CDGLOTWZ";
     }
 
