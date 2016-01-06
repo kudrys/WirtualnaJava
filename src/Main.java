@@ -30,35 +30,40 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        PointsEx point = new PointsEx();
-        point.main2(args);
+        //PointsEx point = new PointsEx();
+        //point.main2(args);
 
-        test1();
-        //runApp();
+        //test1();
+        runApp();
     }
 
     private static void runApp() {
         System.out.println("RYSZARD KUDUK 143271");
         System.out.println("podaj x:");
         Scanner scanX = new Scanner(System.in);
-        int x = scanX.nextInt();
+        //int x = scanX.nextInt();
         System.out.println("podaj y:");
         Scanner scanY = new Scanner(System.in);
-        int y = scanY.nextInt();
+        //int y = scanY.nextInt();
 
-        Swiat s = new Swiat(x,y);
+        Swiat s = new Swiat(16,16);
+
+
+        //s.wsadzZWartosci(1, 'W');
+        //s.wsadzZWartosci(6,'L');
+        //s.wsadzZWartosci(11,'T');
+        //s.wsadzZWartosci(16,'Z');
+        //s.wsadzZWartosci(7,'L');
+        //s.wsadzZWartosci(12, 'C');
+        s.wsadzWylosowaneZwierzaki();
+
+
         Surface sur = new Surface();
         sur.addSwiat(s);
         PointsEx point = new PointsEx();
-
-
-        s.wsadzWylosowaneZwierzaki();
-        System.out.println();
-        s.k.wypisz();
-        for(int i=0;i<10;i++){
-            s.runda();
-            System.out.println("-----------NOWA--RUNDA---------");
-        }
+        point.addSurface(sur);
+        point.initUI();
+        point.setVisible(true);
     }
 }
 //@TODO potestowac metody

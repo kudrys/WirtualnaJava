@@ -6,14 +6,18 @@ import javax.swing.Timer;
 
 public class PointsEx extends JFrame {
 
-    public PointsEx() {
+    Surface surface;
 
-        initUI();
+    public PointsEx() {
+        surface = new Surface();
     }
 
-    private void initUI() {
+    public void addSurface(Surface surface){
+        this.surface = surface;
+    }
 
-        final Surface surface = new Surface();
+    public void initUI() {
+
         add(surface);
 
         addWindowListener(new WindowAdapter() {
@@ -40,6 +44,7 @@ public class PointsEx extends JFrame {
             public void run() {
 
                 PointsEx ex = new PointsEx();
+                ex.initUI();
                 ex.setVisible(true);
             }
         });
