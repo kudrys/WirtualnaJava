@@ -18,6 +18,9 @@ public class PointsEx extends JFrame {
 
         addWindowListener(new WindowAdapter() {
             @Override
+
+
+
             public void windowClosing(WindowEvent e) {
                 Timer timer = surface.getTimer();
                 timer.stop();
