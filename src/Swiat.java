@@ -17,11 +17,11 @@ public class Swiat {
     }
 
     public int getXfromValue(int value) {
-        return value / m.getSzerokosc();
+        return value % m.getSzerokosc();
     }
 
     public int getYfromValue(int value) {
-        return value % m.getWysokosc();
+        return value / m.getSzerokosc();
     }
     public void wsadzZWartosci(int value, char zwierzakAscii){
         int x = value%m.getSzerokosc();
@@ -237,6 +237,7 @@ public class Swiat {
 
         int napotkanyX = getXfromValue(value);
         int napotkanyY = getYfromValue(value);
+        System.out.println(napotkanyX +" " + napotkanyY + " " + value);
         Organizm  napotkany = m.organizmyTab[napotkanyX][napotkanyY];
 
         System.out.println("Aktualny:" + aktualny.getLabel()+", ("+ aktX + ";" + aktY + ")");
