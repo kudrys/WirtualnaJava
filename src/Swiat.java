@@ -117,6 +117,7 @@ public class Swiat {
             wsadzZWartosci(values[i],chary[i]);
         }
     }
+
     public void poruszenie(char kierunek, int x, int y) {
         Organizm aktualny = m.organizmyTab[x][y];
         int newX = x;
@@ -146,6 +147,51 @@ public class Swiat {
             m.organizmyTab[x][y] = null;
         }
     }
+
+    public int wylosujPoleDoOkola(int x, int y){
+        return wylosujPole(x,y,false);
+    }
+
+    public int wylosujWolnePole(int x, int y){
+        return wylosujPole(x,y,true);
+    }
+
+    public int wylosujPole(int x, int y, boolean mustBeFree){
+        int TempX[] = new int[4];
+        int TempY[] = new int[4];
+
+        int kierunkiX[]={x,x+1,x,x-1};
+        int kierunkiY[]={y-1,y,y+1,y};
+
+        for(int i=0; i<4; i++){
+            boolean isInWorld = kierunkiX[i]<m.getSzerokosc() && kierunkiY[i]<m.getWysokosc() && kierunkiX[i]>=0 && kierunkiY[i]>=0;
+            boolean isEmpty = isInWorld ? !mustBeFree||m.organizmyTab[kierunkiY[i]][kierunkiX[i]]==null : false;
+            if(isInWorld && isEmpty){
+                TempX[i] = kierunkiX[i];
+                TempY[i] = kierunkiY[i];
+            }else{
+                TempX[i] = -1;
+                TempY[i] = -1;
+            }
+        }
+        Random r = new Random();
+        int indexR = r.nextInt(4);
+        int value=TempX[indexR];
+
+        if(TempX[0]==-1 && TempX[1]==-1 && TempX[2]==-1 && TempX[3]==-1){
+            return -1;
+        }
+
+        while(value == -1){
+            indexR = r.nextInt(4);
+            value = TempX[indexR];
+        }
+
+        //cout<<"wynik: "<<TempX[r]*szerokosc+TempY[r]<<endl;
+        return TempX[indexR]*m.getSzerokosc()+TempY[indexR];
+    }
+
+
 
 
 

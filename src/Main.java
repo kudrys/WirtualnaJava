@@ -19,6 +19,8 @@ public class Main {
         s.k.deleteNode(s.m.organizmyTab[5][1]);
         s.k.wypisz();
         System.out.println();
+        int temp = s.wylosujWolnePole(5,1);
+        System.out.println(s.getXfromValue(temp) + " " + s.getYfromValue(temp));
         //int temp[] = s.losowanieWartosci(2);
         //System.out.println(Arrays.toString(temp));
         // System.out.println(Arrays.toString(s.losowanieCharow(2)));
