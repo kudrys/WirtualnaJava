@@ -4,8 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-class Surface extends JPanel implements ActionListener {
-
+public class Surface extends JPanel implements ActionListener {
+    public Swiat SurfaceSwiat;
     private final int DELAY = 10;
     private Timer timer;
 
@@ -13,6 +13,10 @@ class Surface extends JPanel implements ActionListener {
     public Surface() {
 
         initTimer();
+    }
+
+    public void addSwiat(Swiat s){
+        SurfaceSwiat = s;
     }
 
     private void initTimer() {

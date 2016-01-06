@@ -32,6 +32,7 @@ public class Main {
     public static void main(String[] args) {
         PointsEx point = new PointsEx();
         point.main2(args);
+
         test1();
         //runApp();
     }
@@ -46,6 +47,11 @@ public class Main {
         int y = scanY.nextInt();
 
         Swiat s = new Swiat(x,y);
+        Surface sur = new Surface();
+        sur.addSwiat(s);
+        PointsEx point = new PointsEx();
+
+
         s.wsadzWylosowaneZwierzaki();
         System.out.println();
         s.k.wypisz();
