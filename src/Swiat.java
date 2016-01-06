@@ -191,7 +191,31 @@ public class Swiat {
         return TempX[indexR]*m.getSzerokosc()+TempY[indexR];
     }
 
-
+    char coToZaKierunek(int x, int y, int newx, int newy){
+        //1-w lewo, 2-w dol, 3-w prawo, 4-w gora
+        int kierunkiX[]={x,x+1,x,x-1};
+        int kierunkiY[]={y-1,y,y+1,y};
+        int index = 0;
+        for(int i=0; i<=3; i++){
+            if(newx==kierunkiX[i]&&newy==kierunkiY[i]){
+                index = i;
+                break;
+            }
+        }
+        if(index==0){
+            return 'G';
+        }
+        if(index==1){
+            return 'P';
+        }
+        if(index==2){
+            return 'D';
+        }
+        if(index==3){
+            return 'L';
+        }
+        return 'X';
+    }
 
 
 
