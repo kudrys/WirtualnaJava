@@ -143,6 +143,7 @@ public class Swiat {
         }
         if(newX<m.getSzerokosc() && newY<m.getWysokosc() && newX>=0 && newY>=0) {
             m.organizmyTab[newX][newY] = m.organizmyTab[x][y];
+            System.out.println("NEW X NEW Y" + newX+" "+newY);
             m.organizmyTab[newX][newY].przypiszXY(newX, newY);
             m.organizmyTab[x][y] = null;
         }
@@ -220,9 +221,9 @@ public class Swiat {
         m.organizmyTab[x][y] = null;
     }
 
-    public int tura(Organizm  aktualny){
+    public void tura(Organizm  aktualny){
         if (aktualny.isActive()==false){
-            return 0;
+            return;
         }
         m.rysujSwiat();
         System.out.println();
@@ -246,7 +247,7 @@ public class Swiat {
             System.out.println("-ROZSIEWANIE-");
             int value2 = wylosujWolnePole(aktX,aktY);
             if (value2 == -1){
-                return 0;
+                return;
             }
             napotkanyX = getXfromValue(value2);
             napotkanyY = getYfromValue(value2);
@@ -263,7 +264,7 @@ public class Swiat {
             System.out.println("//rozmnazanie");
             int value2 = wylosujWolnePole(aktX,aktY);
             if (value2 == -1)
-                return 0;
+                return;
             System.out.println("wylosowane wolne pole:" + value2);
             napotkanyX = getXfromValue(value2);
             napotkanyY = getYfromValue(value2);
@@ -284,7 +285,6 @@ public class Swiat {
                 poruszenie(coToZaKierunek(aktX,aktY,napotkanyX,napotkanyY),aktX,aktY);
             }
         }
-        return 0;
     }
 
     public void runda(){

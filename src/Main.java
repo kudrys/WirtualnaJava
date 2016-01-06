@@ -24,12 +24,14 @@ public class Main {
             s.runda();
             System.out.println( "---------------");
             s.k.wypisz();
-            s.m.rysujSwiat();
+            //s.m.rysujSwiat();
+            System.out.println();
         }
     }
 
     public static void main(String[] args) {
-
+        PointsEx point = new PointsEx();
+        point.main2(args);
         test1();
         //runApp();
     }
