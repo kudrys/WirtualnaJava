@@ -119,9 +119,11 @@ public class Swiat {
     }
 
     public void poruszenie(char kierunek, int x, int y) {
+        System.out.println("start---porusz---");
         Organizm aktualny = m.organizmyTab[x][y];
         int newX = x;
         int newY = y;
+        System.out.println("Poruszany:" + x +","+y);
         switch(kierunek){
             case 'G':{
                 newY--;
@@ -143,10 +145,13 @@ public class Swiat {
         }
         if(newX<m.getSzerokosc() && newY<m.getWysokosc() && newX>=0 && newY>=0) {
             m.organizmyTab[newX][newY] = m.organizmyTab[x][y];
-            System.out.println("NEW X NEW Y" + newX+" "+newY);
+            System.out.println("NEW X:"+ newX +" NEW Y:"+newY);
             m.organizmyTab[newX][newY].przypiszXY(newX, newY);
             m.organizmyTab[x][y] = null;
+            if(m.organizmyTab[x][y]==null)
+                System.out.println("tak kurwa null");
         }
+        System.out.println("end---porusz---");
     }
 
     public int wylosujPoleDoOkola(int x, int y){
@@ -158,15 +163,20 @@ public class Swiat {
     }
 
     public int wylosujPole(int x, int y, boolean mustBeFree){
+        System.out.println("start-------losojpole----");
         int TempX[] = new int[4];
         int TempY[] = new int[4];
 
         int kierunkiX[]={x,x+1,x,x-1};
         int kierunkiY[]={y-1,y,y+1,y};
-
+        System.out.print("Dostepne kierunki: ");
+        for (int i = 0; i <4 ; i++) {
+            System.out.print("<" + kierunkiX[i] + "," + kierunkiY[i] + ">, ");
+        }
+        System.out.println();
         for(int i=0; i<4; i++){
             boolean isInWorld = kierunkiX[i]<m.getSzerokosc() && kierunkiY[i]<m.getWysokosc() && kierunkiX[i]>=0 && kierunkiY[i]>=0;
-            boolean isEmpty = isInWorld ? !mustBeFree||m.organizmyTab[kierunkiX[i]][kierunkiY[i]]==null : false;
+            boolean isEmpty = isInWorld && (!mustBeFree||m.organizmyTab[kierunkiX[i]][kierunkiY[i]]==null);
             if(isInWorld && isEmpty){
                 TempX[i] = kierunkiX[i];
                 TempY[i] = kierunkiY[i];
@@ -176,7 +186,7 @@ public class Swiat {
             }
         }
         Random r = new Random();
-        int indexR = r.nextInt(4);
+        int indexR = r.nextInt(3);
         int value=TempX[indexR];
 
         if(TempX[0]==-1 && TempX[1]==-1 && TempX[2]==-1 && TempX[3]==-1){
@@ -187,7 +197,14 @@ public class Swiat {
             indexR = r.nextInt(4);
             value = TempX[indexR];
         }
-        return TempX[indexR]*m.getSzerokosc()+TempY[indexR];
+        int wynik = TempY[indexR]*m.getSzerokosc()+TempX[indexR];
+        System.out.println();
+        System.out.println(TempX[indexR]+ "*" + m.getSzerokosc() +"+"+TempY[indexR]);
+        System.out.println();
+        System.out.println("Value wylosowane: index:"+indexR+", wynik: " + wynik +" <"+getXfromValue(wynik)+","+getYfromValue(wynik)+">,");
+        System.out.println("end-------losojpole----");
+
+        return wynik;
     }
 
     char coToZaKierunek(int x, int y, int newx, int newy){
@@ -241,7 +258,7 @@ public class Swiat {
         Organizm  napotkany = m.organizmyTab[napotkanyX][napotkanyY];
 
         System.out.println("Aktualny:" + aktualny.getLabel()+", ("+ aktX + ";" + aktY + ")");
-        System.out.println("wylosowane pole: " + value);
+        System.out.println("wylosowane pole: "+value+", "+ getXfromValue(value)+","+getYfromValue(value));
 
         //roslina
         if(aktualny.akcja(napotkany)==1){
@@ -266,7 +283,7 @@ public class Swiat {
             int value2 = wylosujWolnePole(aktX,aktY);
             if (value2 == -1)
                 return;
-            System.out.println("wylosowane wolne pole:" + value2);
+            System.out.println("wylosowane wolne pole:" + + getXfromValue(value2)+","+getYfromValue(value2));
             napotkanyX = getXfromValue(value2);
             napotkanyY = getYfromValue(value2);
             wsadzZWartosci(value2, aktualny.getLabel());

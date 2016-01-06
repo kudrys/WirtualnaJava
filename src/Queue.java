@@ -28,7 +28,7 @@ public class Queue {
         Node dodany = new Node(wsadzany);
         Node temp = first;
         System.out.print(wsadzany.getLabel());
-        if(temp == null || dodany.organizm.getInicjatywa()>temp.organizm.getInicjatywa()){
+        if(temp == null || dodany.organizm.getInicjatywa() > temp.organizm.getInicjatywa()){
             dodany.next = first;
             first = dodany;
         } else {
