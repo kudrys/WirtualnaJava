@@ -6,7 +6,7 @@ import java.util.Scanner;
  */
 
 public class Main {
-    public void test1(){
+    public static void test1(){
         Swiat s = new Swiat(5,5);
         //nowy.losowanieXY();
         s.wsadzZWartosci(1,'W');
@@ -17,7 +17,6 @@ public class Main {
         s.wsadzZWartosci(7,'L');
         s.wsadzZWartosci(12, 'C');
         System.out.println();
-        //nowy.tura(nowy.organizmyTab[2][1]);   //do organizmyTab trzeba podawac odwrotnie X i Y, chuj wie czemu
         System.out.println("----WYNIK---");
         s.m.rysujSwiat();
         s.k.wypisz();
@@ -30,9 +29,13 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        System.out.println("RYSZARD KUDUK 143271");
-        //test1();
 
+        test1();
+        //runApp();
+    }
+
+    private static void runApp() {
+        System.out.println("RYSZARD KUDUK 143271");
         System.out.println("podaj x:");
         Scanner scanX = new Scanner(System.in);
         int x = scanX.nextInt();

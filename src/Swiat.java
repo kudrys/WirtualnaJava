@@ -165,7 +165,7 @@ public class Swiat {
 
         for(int i=0; i<4; i++){
             boolean isInWorld = kierunkiX[i]<m.getSzerokosc() && kierunkiY[i]<m.getWysokosc() && kierunkiX[i]>=0 && kierunkiY[i]>=0;
-            boolean isEmpty = isInWorld ? !mustBeFree||m.organizmyTab[kierunkiY[i]][kierunkiX[i]]==null : false;
+            boolean isEmpty = isInWorld ? !mustBeFree||m.organizmyTab[kierunkiX[i]][kierunkiY[i]]==null : false;
             if(isInWorld && isEmpty){
                 TempX[i] = kierunkiX[i];
                 TempY[i] = kierunkiY[i];
@@ -273,12 +273,12 @@ public class Swiat {
         if(aktualny.akcja(napotkany)==4){
             if(napotkany.kolizja(aktualny)==2){
                 System.out.println("kierunek: " + coToZaKierunek(aktX,aktY,napotkanyX,napotkanyY));
-                System.out.println("//aktualny przegrywa! =NULL");
+                System.out.println("//organizm przegrywa! =NULL");
                 usunZwierzaka(aktX, aktY);
             }
             if(napotkany.kolizja(aktualny)==1){
                 System.out.println("kierunek: " + coToZaKierunek(aktX,aktY,napotkanyX,napotkanyY));
-                System.out.println("//aktualny wygrywa! napotkany zjedzony =NULL");
+                System.out.println("//organizm wygrywa! napotkany zjedzony =NULL");
                 System.out.println("napotX:" + napotkanyX + " napotY:" + napotkanyY);
                 usunZwierzaka(napotkanyX, napotkanyY);
                 poruszenie(coToZaKierunek(aktX,aktY,napotkanyX,napotkanyY),aktX,aktY);
@@ -288,9 +288,9 @@ public class Swiat {
     }
 
     public void runda(){
-        while(k.aktualny!=null){
-            tura(k.aktualny.aktualny);
-            k.aktualny.aktualny.activate();
+        while(k.aktualnyNode !=null){
+            tura(k.aktualnyNode.organizm);
+            k.aktualnyNode.organizm.activate();
             k.next();
         }
         k.reset();

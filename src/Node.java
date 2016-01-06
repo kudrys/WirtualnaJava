@@ -2,7 +2,7 @@
  * Created by RYchu on 2016-01-05.
  */
 public class Node  {
-    public Organizm aktualny;
+    public Organizm organizm;
     public Node next;
     //methods
     public Node(){
@@ -12,7 +12,7 @@ public class Node  {
         next = n;
     }
     public Node(Organizm o){
-        aktualny = o;
+        organizm = o;
     }
 
 }

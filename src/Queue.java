@@ -5,7 +5,7 @@
 public class Queue {
     //fields
     Node first;
-    Node aktualny;
+    Node aktualnyNode;
 
     //methods
     public Queue() {
@@ -13,12 +13,12 @@ public class Queue {
     }
 
     public void next() {
-        aktualny = aktualny.next;
+        aktualnyNode = aktualnyNode.next;
     }
     public void wypisz(){
         Node temp = first;
         while(temp!=null){
-            System.out.print(temp.aktualny.getLabel() + " ");
+            System.out.print(temp.organizm.getLabel() + " ");
             temp=temp.next;
         }
         System.out.println();
@@ -27,29 +27,29 @@ public class Queue {
     public void addNode(Organizm wsadzany) {
         Node dodany = new Node(wsadzany);
         Node temp = first;
-        while(temp!=null) {
-            if (temp.next == null || wsadzany.getInicjatywa() > temp.aktualny.getInicjatywa()) {
-                dodany.next = temp.next;
-                temp.next = dodany;
-                return;
+        System.out.print(wsadzany.getLabel());
+        if(temp == null || dodany.organizm.getInicjatywa()>temp.organizm.getInicjatywa()){
+            dodany.next = first;
+            first = dodany;
+        } else {
+            while (true) {
+                if (temp.next == null || wsadzany.getInicjatywa() > temp.next.organizm.getInicjatywa()) {
+                    dodany.next = temp.next;
+                    temp.next = dodany;
+                    break;
+                }
+                temp = temp.next;
             }
-            temp = temp.next;
-        }
-        if (temp == null) {
-            if(temp == first){
-                first = dodany;
-            }
-            temp = dodany;
         }
     }
 
     public void deleteNode(Organizm  nodeToDelete){
         Node temp = first;
-        if (temp.aktualny==nodeToDelete){
+        if (temp.organizm ==nodeToDelete){
             first=first.next;
             return;
         }
-        while(temp.next!=null && temp.next.aktualny!=nodeToDelete){
+        while(temp.next!=null && temp.next.organizm !=nodeToDelete){
             temp=temp.next;
         }
         if(temp.next!=null){
@@ -57,6 +57,6 @@ public class Queue {
         }
     }
     public void reset(){
-        aktualny = first;
+        aktualnyNode = first;
     }
 }
