@@ -70,7 +70,7 @@ public class Swiat {
                 organizmWsadzany = null;
             }
         }
-        //kolejka.addNode(organizmWsadzany);
+        k.addNode(organizmWsadzany);
         m.organizmyTab[x][y] = organizmWsadzany;
         if(organizmWsadzany!=null)
             organizmWsadzany.przypiszXY(x, y);
@@ -186,8 +186,6 @@ public class Swiat {
             indexR = r.nextInt(4);
             value = TempX[indexR];
         }
-
-        //cout<<"wynik: "<<TempX[r]*szerokosc+TempY[r]<<endl;
         return TempX[indexR]*m.getSzerokosc()+TempY[indexR];
     }
 
@@ -217,8 +215,85 @@ public class Swiat {
         return 'X';
     }
 
+    public void usunZwierzaka(int x, int y){
+        k.deleteNode(m.organizmyTab[x][y]);
+        m.organizmyTab[x][y] = null;
+    }
 
+    public int tura(Organizm  aktualny){
+        if (aktualny.isActive()==false){
+            return 0;
+        }
+        m.rysujSwiat();
+        System.out.println();
+        k.wypisz();
+        System.out.println();
+        //Sleep(500);
 
+        int aktX = aktualny.getX();
+        int aktY = aktualny.getY();
+        int value = wylosujPoleDoOkola(aktX,aktY);
 
+        int napotkanyX = getXfromValue(value);
+        int napotkanyY = getYfromValue(value);
+        Organizm  napotkany = m.organizmyTab[napotkanyX][napotkanyY];
 
+        System.out.println("Aktualny:" + aktualny.getLabel()+", ("+ aktX + ";" + aktY + ")");
+        System.out.println("wylosowane pole: " + value);
+
+        //roslina
+        if(aktualny.akcja(napotkany)==1){
+            System.out.println("-ROZSIEWANIE-");
+            int value2 = wylosujWolnePole(aktX,aktY);
+            if (value2 == -1){
+                return 0;
+            }
+            napotkanyX = getXfromValue(value2);
+            napotkanyY = getYfromValue(value2);
+            wsadzZWartosci(value2, aktualny.getLabel());
+        }
+        //poruszanie
+        if(aktualny.getOrganizmMark()=='Z' && aktualny.akcja(napotkany)==2){
+            System.out.println("kierunek: " + coToZaKierunek(aktX,aktY,napotkanyX,napotkanyY));
+            System.out.println("napotX:" + napotkanyX + " napotY:" + napotkanyY);
+            poruszenie(coToZaKierunek(aktX,aktY,napotkanyX,napotkanyY),aktX,aktY);
+        }
+        //rozmnazanie
+        if(aktualny.akcja(napotkany)==3){
+            System.out.println("//rozmnazanie");
+            int value2 = wylosujWolnePole(aktX,aktY);
+            if (value2 == -1)
+                return 0;
+            System.out.println("wylosowane wolne pole:" + value2);
+            napotkanyX = getXfromValue(value2);
+            napotkanyY = getYfromValue(value2);
+            wsadzZWartosci(value2, aktualny.getLabel());
+        }
+        //kolizja
+        if(aktualny.akcja(napotkany)==4){
+            if(napotkany.kolizja(aktualny)==2){
+                System.out.println("kierunek: " + coToZaKierunek(aktX,aktY,napotkanyX,napotkanyY));
+                System.out.println("//aktualny przegrywa! =NULL");
+                usunZwierzaka(aktX, aktY);
+            }
+            if(napotkany.kolizja(aktualny)==1){
+                System.out.println("kierunek: " + coToZaKierunek(aktX,aktY,napotkanyX,napotkanyY));
+                System.out.println("//aktualny wygrywa! napotkany zjedzony =NULL");
+                System.out.println("napotX:" + napotkanyX + " napotY:" + napotkanyY);
+                usunZwierzaka(napotkanyX, napotkanyY);
+                poruszenie(coToZaKierunek(aktX,aktY,napotkanyX,napotkanyY),aktX,aktY);
+            }
+        }
+        return 0;
+    }
+
+    public void runda(){
+        while(k.aktualny!=null){
+            tura(k.aktualny.aktualny);
+            k.aktualny.aktualny.activate();
+            k.next();
+        }
+        k.reset();
+        //Sleep(1000);
+    }
 }

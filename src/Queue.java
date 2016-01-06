@@ -56,4 +56,7 @@ public class Queue {
             temp.next=temp.next.next;
         }
     }
+    public void reset(){
+        aktualny = first;
+    }
 }

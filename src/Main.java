@@ -1,36 +1,53 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * Created by RYchu on 2015-12-18.
  */
 
 public class Main {
-
-    public static void main(String[] args){
-        Swiat s = new Swiat(7,7);
-        s.wsadzZwierzakaDoMapy(5,1,'L');
-        s.wsadzZwierzakaDoMapy(6,1,'L');
-        s.k.addNode(s.m.organizmyTab[5][1]);
-        s.k.addNode(s.m.organizmyTab[6][1]);
+    public void test1(){
+        Swiat s = new Swiat(5,5);
+        //nowy.losowanieXY();
+        s.wsadzZWartosci(1,'W');
         s.k.wypisz();
-        //s.wsadzZWartosci(0,'L');
-        //s.m.rysujSwiat();
-        System.out.println("deleted");
-        s.k.deleteNode(s.m.organizmyTab[5][1]);
-        s.k.wypisz();
+        s.wsadzZWartosci(6,'L');
+        s.wsadzZWartosci(11,'T');
+        s.wsadzZWartosci(16,'Z');
+        s.wsadzZWartosci(7,'L');
+        s.wsadzZWartosci(12, 'C');
         System.out.println();
-        int temp = s.wylosujWolnePole(5, 1);
-        System.out.println(s.getXfromValue(temp) + " " + s.getYfromValue(temp));
-        System.out.println(s.coToZaKierunek(5,1,s.getXfromValue(temp),s.getYfromValue(temp)));
-        //int temp[] = s.losowanieWartosci(2);
-        //System.out.println(Arrays.toString(temp));
-        // System.out.println(Arrays.toString(s.losowanieCharow(2)));
-        //s.wsadzWylosowaneZwierzaki();
-        //s.poruszenie('G',5,1);
-        //s.m.rysujSwiat();
+        //nowy.tura(nowy.organizmyTab[2][1]);   //do organizmyTab trzeba podawac odwrotnie X i Y, chuj wie czemu
+        System.out.println("----WYNIK---");
+        s.m.rysujSwiat();
+        s.k.wypisz();
+        for(int i=0;i<10;i++){
+            s.runda();
+            System.out.println( "---------------");
+            s.k.wypisz();
+            s.m.rysujSwiat();
+        }
+    }
 
+    public static void main(String[] args) {
+        System.out.println("RYSZARD KUDUK 143271");
+        //test1();
 
+        System.out.println("podaj x:");
+        Scanner scanX = new Scanner(System.in);
+        int x = scanX.nextInt();
+        System.out.println("podaj y:");
+        Scanner scanY = new Scanner(System.in);
+        int y = scanY.nextInt();
 
+        Swiat s = new Swiat(x,y);
+        s.wsadzWylosowaneZwierzaki();
+        System.out.println();
+        s.k.wypisz();
+        for(int i=0;i<10;i++){
+            s.runda();
+            System.out.println("-----------NOWA--RUNDA---------");
+        }
     }
 }
 //@TODO potestowac metody

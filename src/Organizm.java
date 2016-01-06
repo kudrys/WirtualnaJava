@@ -95,7 +95,7 @@ public class Organizm {
      * flag 4 - kolizja
      * flag 0 - nic sie nie dzieje
      */
-    int akcja(Reference<Organizm> napotkany){
+    int akcja(Organizm napotkany){
         if(szansaNaSukces()){
             if(this.OrganizmMark=='R'){
                 return 1;
@@ -103,7 +103,7 @@ public class Organizm {
             if(napotkany==null){
                 return 2;
             }
-            if (getLabel() == napotkany.get().getLabel()) {
+            if (getLabel() == napotkany.getLabel()) {
                 return 3;
             }
             return 4;
