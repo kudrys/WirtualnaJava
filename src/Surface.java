@@ -9,6 +9,7 @@ class Surface extends JPanel implements ActionListener {
     private final int DELAY = 10;
     private Timer timer;
 
+
     public Surface() {
 
         initTimer();
@@ -42,6 +43,8 @@ class Surface extends JPanel implements ActionListener {
             g2d.drawRect(x,y,10,10);
             //g2d.drawLine(x, y, x+5, y+5);
         }
+        Image img1 = Toolkit.getDefaultToolkit().getImage("legenda.png");
+        g2d.drawImage(img1, 0, 0, this);
     }
     @Override
     public void paintComponent(Graphics g) {
