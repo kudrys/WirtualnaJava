@@ -1,8 +1,7 @@
 import java.awt.EventQueue;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import javax.swing.JFrame;
-import javax.swing.Timer;
+import javax.swing.*;
 
 public class PointsEx extends JFrame {
 
@@ -31,8 +30,8 @@ public class PointsEx extends JFrame {
             }
         });
 
-        setTitle("Points");
-        setSize(600, 500);
+        setTitle("Zwierzecy Swiat");
+        setSize(605, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

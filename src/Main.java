@@ -46,15 +46,7 @@ public class Main {
         Scanner scanY = new Scanner(System.in);
         //int y = scanY.nextInt();
 
-        Swiat s = new Swiat(16,16);
-
-
-        //s.wsadzZWartosci(1, 'W');
-        //s.wsadzZWartosci(6,'L');
-        //s.wsadzZWartosci(11,'T');
-        //s.wsadzZWartosci(16,'Z');
-        //s.wsadzZWartosci(7,'L');
-        //s.wsadzZWartosci(12, 'C');
+        Swiat s = new Swiat(16,20);
         s.wsadzWylosowaneZwierzaki();
 
 

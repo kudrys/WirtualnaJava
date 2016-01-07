@@ -1,3 +1,4 @@
+import javax.imageio.plugins.jpeg.JPEGHuffmanTable;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -30,35 +31,28 @@ public class Surface extends JPanel implements ActionListener {
         return timer;
     }
 
+    public void buttonAction(){
+        System.exit(0);
+    }
+
     private void doDrawing(Graphics g) {
 
         Graphics2D g2d = (Graphics2D) g;
-
-        g2d.setPaint(Color.green);
-        g2d.setBackground(Color.black);
-        int w = getWidth();
-        int h = getHeight();
-
-        Random r = new Random();
-
-        for (int i = 0; i < 2000; i++) {
-            int x = Math.abs(r.nextInt()) % w;
-            int y = Math.abs(r.nextInt()) % h;
-            //g2d.drawRect(x,y,10,10);
-            //g2d.drawLine(x, y, x+5, y+5);
-        }
-
         Node n = surfaceSwiat.k.first;
 
         while(n!=null){
             rysuj(n, g2d);
-            n=n.next;
+            n = n.next;
         }
+        button();
+        Image img1 = Toolkit.getDefaultToolkit().getImage("legenda.png");
+        g2d.drawImage(img1, 0, 0, this);
+    }
 
-
-
-        //Image img1 = Toolkit.getDefaultToolkit().getImage("legenda.png");
-        //g2d.drawImage(img1, 0, 0, this);
+    private void button(){
+        JButton button = new JButton("RUNDA");
+        button.setBounds(10, 535, 80,30);
+        add(button);
     }
 
     private void rysuj(Node n, Graphics2D g2d){
@@ -71,7 +65,7 @@ public class Surface extends JPanel implements ActionListener {
         Image img1 = Toolkit.getDefaultToolkit().getImage(nazwa_obrazka);
         int x = n.organizm.getX();
         int y = n.organizm.getY();
-        g2d.drawImage(img1, x*imgWidth, y*imgHeight+offsetY, this);
+        g2d.drawImage(img1, x*imgWidth+offsetY, y*imgHeight+offsetY, this);
     }
 
     @Override
