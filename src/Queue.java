@@ -6,7 +6,6 @@ public class Queue {
     //fields
     Node first;
     Node aktualnyNode;
-
     //methods
     public Queue() {
         first = null;

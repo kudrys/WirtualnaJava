@@ -53,24 +53,42 @@ public class Surface extends JPanel implements ActionListener {
             rysuj(n, g2d);
             n = n.next;
         }
-        //surfaceSwiat.k.reset();
+        surfaceSwiat.k.reset();
     }
 
     /**
      * http://www.tutorialspoint.com/swing/swing_jbutton.htm
      */
+    public void tura(Node kek){
+        if(surfaceSwiat.k.aktualnyNode !=null){
+            surfaceSwiat.k.next();
+            if(surfaceSwiat.k.aktualnyNode==null)
+                kek = surfaceSwiat.k.first;
+            else
+                kek = kek.next;
+            surfaceSwiat.tura(kek.organizm);
+        }
+        //surfaceSwiat.k.reset();
+    }
+
     public void button(Graphics g){
         JButton button = new JButton("RUNDA");
         button.setBounds(10, 535, 80,30);
+
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                surfaceSwiat.tura(surfaceSwiat.k.aktualnyNode.organizm);
+                //tura(kek);
+                while(button.getModel().isEnabled() && surfaceSwiat.k.aktualnyNode !=null){
+                    Organizm temp = surfaceSwiat.k.aktualnyNode.organizm;
+                    surfaceSwiat.k.next();
+                    surfaceSwiat.tura(temp);
+                }
+                //surfaceSwiat.k.reset();
                 doDrawing(g);
             }
         });
         add(button);
     }
-
 
     private void rysuj(Node n, Graphics2D g2d){
         int offsetY = 100;

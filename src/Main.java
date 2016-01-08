@@ -49,14 +49,14 @@ public class Main {
         Swiat s = new Swiat(5,8 );
         s.wsadzWylosowaneZwierzaki();
 
-
+        s.runda();
         Surface sur = new Surface();
         sur.addSwiat(s);
         PointsEx point = new PointsEx(22,22);
         point.addSurface(sur);
         point.initUI();
         point.setVisible(true);
-        s.runda();
+
     }
 }
 //@TODO potestowac metody
