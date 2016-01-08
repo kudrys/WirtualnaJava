@@ -240,6 +240,7 @@ public class Swiat {
 
     public void tura(Organizm  aktualny){
         if (aktualny.isActive()==false){
+            aktualny.activate();
             return;
         }
         m.rysujSwiat();
@@ -307,9 +308,9 @@ public class Swiat {
 
     public void runda(){
         while(k.aktualnyNode !=null){
-            tura(k.aktualnyNode.organizm);
-            k.aktualnyNode.organizm.activate();
+            Organizm temp = k.aktualnyNode.organizm;
             k.next();
+            tura(temp);
         }
         k.reset();
         //Sleep(1000);
