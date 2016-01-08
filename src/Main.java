@@ -56,6 +56,7 @@ public class Main {
         point.addSurface(sur);
         point.initUI();
         point.setVisible(true);
+        s.runda();
     }
 }
 //@TODO potestowac metody
