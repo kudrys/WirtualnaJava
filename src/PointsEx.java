@@ -21,6 +21,8 @@ public class PointsEx extends JFrame {
     public void initUI() {
 
         add(surface);
+        surface.setLayout(null);
+        
 
         addWindowListener(new WindowAdapter() {
             @Override

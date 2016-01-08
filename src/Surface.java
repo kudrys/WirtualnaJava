@@ -31,15 +31,11 @@ public class Surface extends JPanel implements ActionListener {
         return timer;
     }
 
-    public void buttonAction(){
-        System.exit(0);
-    }
-
-    private void doDrawing(Graphics g) {
+    public void doDrawing(Graphics g) {
 
         Graphics2D g2d = (Graphics2D) g;
         narysujObrazek(g2d);
-        button();
+        //button();
         Image img1 = Toolkit.getDefaultToolkit().getImage("legenda.png");
             try {
                 Thread.sleep(1000);                 //1000 milliseconds is one second.
@@ -50,7 +46,7 @@ public class Surface extends JPanel implements ActionListener {
 
     }
 
-    private void narysujObrazek(Graphics2D g2d) {
+    public void narysujObrazek(Graphics2D g2d) {
         Node n = surfaceSwiat.k.first;
 
         while(n!=null){
@@ -66,6 +62,11 @@ public class Surface extends JPanel implements ActionListener {
     public void button(){
         JButton button = new JButton("RUNDA");
         button.setBounds(10, 535, 80,30);
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
         add(button);
     }
 
@@ -88,6 +89,7 @@ public class Surface extends JPanel implements ActionListener {
 
         super.paintComponent(g);
         doDrawing(g);
+        button();
     }
 
     @Override

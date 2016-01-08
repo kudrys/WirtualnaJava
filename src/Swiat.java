@@ -95,7 +95,7 @@ public class Swiat {
             values[lastIndex] = values[randomValue];
             values[randomValue] = temp;
         }
-
+        System.out.println(Arrays.toString(Arrays.copyOfRange(values, tabSize - iloscWylosowanych, tabSize)));
         return Arrays.copyOfRange(values, tabSize-iloscWylosowanych, tabSize);
     }
 
@@ -304,12 +304,12 @@ public class Swiat {
         if(aktualny.akcja(napotkany)==4){
             if(napotkany.kolizja(aktualny)==2){
                 System.out.println("kierunek: " + coToZaKierunek(aktX,aktY,napotkanyX,napotkanyY));
-                System.out.println("//organizm przegrywa! =NULL");
+                System.out.println("//organizm przegrywa!");
                 usunZwierzaka(aktX, aktY);
             }
             if(napotkany.kolizja(aktualny)==1){
                 System.out.println("kierunek: " + coToZaKierunek(aktX,aktY,napotkanyX,napotkanyY));
-                System.out.println("//organizm wygrywa! napotkany zjedzony =NULL");
+                System.out.println("//organizm wygrywa! napotkany zjedzony!");
                 System.out.println("napotX:" + napotkanyX + " napotY:" + napotkanyY);
                 usunZwierzaka(napotkanyX, napotkanyY);
                 poruszenie(coToZaKierunek(aktX,aktY,napotkanyX,napotkanyY),aktX,aktY);
