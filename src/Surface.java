@@ -38,18 +38,29 @@ public class Surface extends JPanel implements ActionListener {
     private void doDrawing(Graphics g) {
 
         Graphics2D g2d = (Graphics2D) g;
+        narysujObrazek(g2d);
+        button();
+        Image img1 = Toolkit.getDefaultToolkit().getImage("legenda.png");
+            try {
+                Thread.sleep(1000);                 //1000 milliseconds is one second.
+            } catch(InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+            g2d.drawImage(img1, 0, 0, this);
+
+    }
+
+    private void narysujObrazek(Graphics2D g2d) {
         Node n = surfaceSwiat.k.first;
 
         while(n!=null){
             rysuj(n, g2d);
             n = n.next;
         }
-        button();
-        Image img1 = Toolkit.getDefaultToolkit().getImage("legenda.png");
-        g2d.drawImage(img1, 0, 0, this);
+        surfaceSwiat.k.reset();
     }
 
-    private void button(){
+    public void button(){
         JButton button = new JButton("RUNDA");
         button.setBounds(10, 535, 80,30);
         add(button);

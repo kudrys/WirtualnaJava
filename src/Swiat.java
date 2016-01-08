@@ -245,6 +245,11 @@ public class Swiat {
     }
 
     public void tura(Organizm  aktualny){
+        if(aktualny==null){
+            k.reset();
+            aktualny = k.first.organizm;
+        }
+
         if (aktualny.isActive()==false){
             aktualny.activate();
             return;

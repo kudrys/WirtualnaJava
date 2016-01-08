@@ -6,8 +6,11 @@ import javax.swing.*;
 public class PointsEx extends JFrame {
 
     Surface surface;
+    Swiat swiat;
 
-    public PointsEx() {
+
+    public PointsEx(int x, int y) {
+        swiat = new Swiat(x, y, true);
         surface = new Surface();
     }
 
@@ -42,9 +45,17 @@ public class PointsEx extends JFrame {
             @Override
             public void run() {
 
-                PointsEx ex = new PointsEx();
-                ex.initUI();
-                ex.setVisible(true);
+                while(true) {
+                    try {
+                        Thread.sleep(1000);                 //1000 milliseconds is one second.
+                    } catch(InterruptedException ex) {
+                        Thread.currentThread().interrupt();
+                    }
+                    PointsEx ex = new PointsEx(22,22);
+
+                    ex.initUI();
+                    ex.setVisible(true);
+                }
             }
         });
     }
