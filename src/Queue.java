@@ -13,7 +13,10 @@ public class Queue {
     }
 
     public void next() {
-        aktualnyNode = aktualnyNode.next;
+        if(aktualnyNode==null)
+            aktualnyNode = first;
+        else
+            aktualnyNode = aktualnyNode.next;
     }
     public void wypisz(){
         Node temp = first;
