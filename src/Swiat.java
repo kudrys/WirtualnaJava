@@ -11,9 +11,15 @@ public class Swiat {
     public String gatunki;
 
     public Swiat(int x, int y){
+        this(x, y, false);
+    }
+
+    public Swiat (int x, int y , boolean losowane){
         m = new Mapa(x,y);
         k = new Queue();
         gatunki = "CDGLOTWZ";
+        if (losowane)
+            wsadzWylosowaneZwierzaki();
     }
 
     public int getXfromValue(int value) {
