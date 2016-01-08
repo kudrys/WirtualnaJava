@@ -60,11 +60,15 @@ public class Surface extends JPanel implements ActionListener {
         surfaceSwiat.k.reset();
     }
 
+    /**
+     * http://www.tutorialspoint.com/swing/swing_jbutton.htm
+     */
     public void button(){
         JButton button = new JButton("RUNDA");
         button.setBounds(10, 535, 80,30);
         add(button);
     }
+
 
     private void rysuj(Node n, Graphics2D g2d){
         int offsetY = 100;
