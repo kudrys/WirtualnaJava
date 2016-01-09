@@ -92,6 +92,7 @@ public class Surface extends JPanel implements ActionListener {
 
     private void rysuj(Node n, Graphics2D g2d){
         int offsetY = 100;
+        int offsetX = 20;
         int imgHeight = 20;
         int imgWidth = 20;
 
@@ -100,7 +101,7 @@ public class Surface extends JPanel implements ActionListener {
         Image img1 = Toolkit.getDefaultToolkit().getImage(nazwa_obrazka);
         int x = n.organizm.getX();
         int y = n.organizm.getY();
-        g2d.drawImage(img1, x*imgWidth+offsetY, y*imgHeight+offsetY, this);
+        g2d.drawImage(img1, x*imgWidth+offsetX, y*imgHeight+offsetY, this);
     }
 
     @Override

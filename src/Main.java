@@ -41,12 +41,12 @@ public class Main {
         System.out.println("RYSZARD KUDUK 143271");
         System.out.println("podaj x:");
         Scanner scanX = new Scanner(System.in);
-        //int x = scanX.nextInt();
+        int x = scanX.nextInt();
         System.out.println("podaj y:");
         Scanner scanY = new Scanner(System.in);
-        //int y = scanY.nextInt();
+        int y = scanY.nextInt();
 
-        Swiat s = new Swiat(5,8 );
+        Swiat s = new Swiat(x,y);
         s.wsadzWylosowaneZwierzaki();
 
         s.runda();

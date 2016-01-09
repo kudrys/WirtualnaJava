@@ -7,7 +7,7 @@ public class Guarana extends Roslina {
     public Guarana() {
         label = 'G';
         sila = 0;
-        szansa = 40;
+        szansa = 20;
     }
     public int kolizja(Organizm attacking) {
         attacking.increaseSila(3);

@@ -32,7 +32,7 @@ public class Swiat {
     public void wsadzZWartosci(int value, char zwierzakAscii){
         int x = value%m.getSzerokosc();
         int y = value/m.getSzerokosc();
-        System.out.println("x:" + x + " y:" + y);
+        //System.out.println("x:" + x + " y:" + y);
         wsadzZwierzakaDoMapy(x, y, zwierzakAscii);
     }
 
@@ -95,7 +95,7 @@ public class Swiat {
             values[lastIndex] = values[randomValue];
             values[randomValue] = temp;
         }
-        System.out.println(Arrays.toString(Arrays.copyOfRange(values, tabSize - iloscWylosowanych, tabSize)));
+        //System.out.println(Arrays.toString(Arrays.copyOfRange(values, tabSize - iloscWylosowanych, tabSize)));
         return Arrays.copyOfRange(values, tabSize-iloscWylosowanych, tabSize);
     }
 
@@ -125,11 +125,11 @@ public class Swiat {
     }
 
     public void poruszenie(char kierunek, int x, int y) {
-        System.out.println("start---porusz---");
+        //System.out.println("start---porusz---");
         Organizm aktualny = m.organizmyTab[x][y];
         int newX = x;
         int newY = y;
-        System.out.println("Poruszany:" + x +","+y);
+        //System.out.println("Poruszany:" + x +","+y);
         switch(kierunek){
             case 'G':{
                 newY--;
@@ -151,13 +151,11 @@ public class Swiat {
         }
         if(newX<m.getSzerokosc() && newY<m.getWysokosc() && newX>=0 && newY>=0) {
             m.organizmyTab[newX][newY] = m.organizmyTab[x][y];
-            System.out.println("NEW X:"+ newX +" NEW Y:"+newY);
+            //System.out.println("NEW X:"+ newX +" NEW Y:"+newY);
             m.organizmyTab[newX][newY].przypiszXY(newX, newY);
             m.organizmyTab[x][y] = null;
-            if(m.organizmyTab[x][y]==null)
-                System.out.println("tak kurwa null");
         }
-        System.out.println("end---porusz---");
+        //System.out.println("end---porusz---");
     }
 
     public int wylosujPoleDoOkola(int x, int y){
@@ -169,17 +167,14 @@ public class Swiat {
     }
 
     public int wylosujPole(int x, int y, boolean mustBeFree){
-        System.out.println("start-------losojpole----");
+        //System.out.println("start-------losojpole----");
         int TempX[] = new int[4];
         int TempY[] = new int[4];
 
         int kierunkiX[]={x,x+1,x,x-1};
         int kierunkiY[]={y-1,y,y+1,y};
-        System.out.print("Dostepne kierunki: ");
-        for (int i = 0; i <4 ; i++) {
-            System.out.print("<" + kierunkiX[i] + "," + kierunkiY[i] + ">, ");
-        }
-        System.out.println();
+        //System.out.print("Dostepne kierunki: ");
+        //System.out.println();
         for(int i=0; i<4; i++){
             boolean isInWorld = kierunkiX[i]<m.getSzerokosc() && kierunkiY[i]<m.getWysokosc() && kierunkiX[i]>=0 && kierunkiY[i]>=0;
             boolean isEmpty = isInWorld && (!mustBeFree||m.organizmyTab[kierunkiX[i]][kierunkiY[i]]==null);
@@ -204,11 +199,11 @@ public class Swiat {
             value = TempX[indexR];
         }
         int wynik = TempY[indexR]*m.getSzerokosc()+TempX[indexR];
-        System.out.println();
-        System.out.println(TempX[indexR]+ "*" + m.getSzerokosc() +"+"+TempY[indexR]);
-        System.out.println();
-        System.out.println("Value wylosowane: index:"+indexR+", wynik: " + wynik +" <"+getXfromValue(wynik)+","+getYfromValue(wynik)+">,");
-        System.out.println("end-------losojpole----");
+        //System.out.println();
+        //System.out.println(TempX[indexR]+ "*" + m.getSzerokosc() +"+"+TempY[indexR]);
+        //System.out.println();
+        //System.out.println("Value wylosowane: index:"+indexR+", wynik: " + wynik +" <"+getXfromValue(wynik)+","+getYfromValue(wynik)+">,");
+        //System.out.println("end-------losojpole----");
 
         return wynik;
     }
@@ -256,7 +251,7 @@ public class Swiat {
         }
         m.rysujSwiat();
         System.out.println();
-        k.wypisz();
+        //k.wypisz();
         System.out.println();
         //Sleep(500);
 

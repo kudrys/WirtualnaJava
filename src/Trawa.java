@@ -5,6 +5,6 @@ public class Trawa extends  Roslina{
     public Trawa() {
         label = 'T';
         sila = 0;
-        szansa = 40;
+        szansa = 20;
     }
 }
