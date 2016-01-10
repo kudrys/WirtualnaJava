@@ -9,10 +9,9 @@ public class Surface extends JPanel implements ActionListener {
     public Swiat surfaceSwiat;
     private final int DELAY = 10;
     private Timer timer;
-
+    public SwingJRadioButtonDemo radio = new SwingJRadioButtonDemo();
 
     public Surface() {
-
         initTimer();
     }
 
@@ -94,6 +93,17 @@ public class Surface extends JPanel implements ActionListener {
         });
         add(buttonQuit);
     }
+    public void buttonDodaj(){
+        JButton buttonDodaj = new JButton("Dodaj");
+        buttonDodaj.setBounds(250,535,80,30);
+
+        buttonDodaj.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                radio.run();
+            }
+        });
+        add(buttonDodaj);
+    }
 
     private void rysuj(Node n, Graphics2D g2d){
         int offsetY = 100;
@@ -115,6 +125,7 @@ public class Surface extends JPanel implements ActionListener {
         doDrawing(g);
         button(g);
         buttonQuit();
+        buttonDodaj();
     }
 
     @Override

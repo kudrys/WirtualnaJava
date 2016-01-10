@@ -6,11 +6,10 @@ import javax.swing.*;
 public class PointsEx extends JFrame {
 
     Surface surface;
-    Swiat swiat;
+    //Swiat swiat;
 
 
-    public PointsEx(int x, int y) {
-        swiat = new Swiat(x, y, true);
+    public PointsEx() {
         surface = new Surface();
     }
 
@@ -53,7 +52,7 @@ public class PointsEx extends JFrame {
                     } catch(InterruptedException ex) {
                         Thread.currentThread().interrupt();
                     }
-                    PointsEx ex = new PointsEx(22,22);
+                    PointsEx ex = new PointsEx();
 
                     ex.initUI();
                     ex.setVisible(true);

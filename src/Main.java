@@ -49,7 +49,7 @@ public class Main {
         s.runda();
         Surface sur = new Surface();
         sur.addSwiat(s);
-        PointsEx point = new PointsEx(22,22);
+        PointsEx point = new PointsEx();
         point.addSurface(sur);
         point.initUI();
         point.setVisible(true);
