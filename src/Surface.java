@@ -21,13 +21,11 @@ public class Surface extends JPanel implements ActionListener {
     }
 
     private void initTimer() {
-
         timer = new Timer(DELAY, this);
         timer.start();
     }
 
     public Timer getTimer() {
-
         return timer;
     }
 
@@ -37,11 +35,7 @@ public class Surface extends JPanel implements ActionListener {
         narysujObrazek(g2d);
         //button();
         Image img1 = Toolkit.getDefaultToolkit().getImage("legenda.png");
-            try {
-                Thread.sleep(1000);                 //1000 milliseconds is one second.
-            } catch(InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
+
             g2d.drawImage(img1, 0, 0, this);
 
     }
@@ -77,7 +71,7 @@ public class Surface extends JPanel implements ActionListener {
 
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //tura(kek);
+                surfaceSwiat.k.wypisz();
                 while(button.getModel().isEnabled() && surfaceSwiat.k.aktualnyNode !=null){
                     Organizm temp = surfaceSwiat.k.aktualnyNode.organizm;
                     surfaceSwiat.k.next();
@@ -88,6 +82,17 @@ public class Surface extends JPanel implements ActionListener {
             }
         });
         add(button);
+    }
+    public void buttonQuit(){
+        JButton buttonQuit = new JButton("Quit");
+        buttonQuit.setBounds(500,535,80,30);
+
+        buttonQuit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        add(buttonQuit);
     }
 
     private void rysuj(Node n, Graphics2D g2d){
@@ -106,10 +111,10 @@ public class Surface extends JPanel implements ActionListener {
 
     @Override
     public void paintComponent(Graphics g) {
-
         super.paintComponent(g);
         doDrawing(g);
         button(g);
+        buttonQuit();
     }
 
     @Override

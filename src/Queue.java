@@ -29,7 +29,7 @@ public class Queue {
     public void addNode(Organizm wsadzany) {
         Node dodany = new Node(wsadzany);
         Node temp = first;
-        System.out.print(wsadzany.getLabel());
+        //System.out.print(wsadzany.getLabel());
         if(temp == null || dodany.organizm.getInicjatywa() > temp.organizm.getInicjatywa()){
             dodany.next = first;
             first = dodany;

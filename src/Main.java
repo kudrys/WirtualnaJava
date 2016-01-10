@@ -30,9 +30,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        //PointsEx point = new PointsEx();
-        //point.main2(args);
-
         //test1();
         runApp();
     }

@@ -251,9 +251,6 @@ public class Swiat {
         }
         m.rysujSwiat();
         System.out.println();
-        //k.wypisz();
-        System.out.println();
-        //Sleep(500);
 
         int aktX = aktualny.getX();
         int aktY = aktualny.getY();
@@ -261,7 +258,7 @@ public class Swiat {
 
         int napotkanyX = getXfromValue(value);
         int napotkanyY = getYfromValue(value);
-        System.out.println(napotkanyX +" " + napotkanyY + " " + value);
+        //System.out.println(napotkanyX +" " + napotkanyY + " " + value);
         Organizm  napotkany = m.organizmyTab[napotkanyX][napotkanyY];
 
         System.out.println("Aktualny:" + aktualny.getLabel()+", ("+ aktX + ";" + aktY + ")");
