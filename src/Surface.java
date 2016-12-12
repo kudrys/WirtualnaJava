@@ -1,21 +1,25 @@
 import javax.imageio.plugins.jpeg.JPEGHuffmanTable;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+import java.lang.reflect.Array;
 import java.util.Random;
 
-public class Surface extends JPanel implements ActionListener {
-    public Swiat surfaceSwiat;
+public class Surface extends JPanel implements ActionListener, MouseMotionListener {
+    private Swiat surfaceSwiat;
     private final int DELAY = 10;
     private Timer timer;
-    public SwingJRadioButtonDemo radio = new SwingJRadioButtonDemo();
 
-    public Surface() {
+    private int offsetY = 100;
+    private int offsetX = 20;
+    private int imgHeight = 20;
+    private int imgWidth = 20;
+
+    Surface() {
         initTimer();
     }
 
-    public void addSwiat(Swiat s){
+    void addSwiat(Swiat s){
         surfaceSwiat = s;
     }
 
@@ -24,11 +28,20 @@ public class Surface extends JPanel implements ActionListener {
         timer.start();
     }
 
-    public Timer getTimer() {
+    Timer getTimer() {
         return timer;
     }
 
-    public void doDrawing(Graphics g) {
+    private void doDrawing(Graphics g) {
+        addMouseListener(new MouseAdapter(){
+            public void mousePressed(MouseEvent e) {
+                System.out.println(e.getX());
+                final int[] coordinates = surfaceConvert(e.getX(), e.getY());
+                if(coordinates[0] != -1 && coordinates[1] != -1){
+                    System.out.println("prawda kek");
+                }
+            }
+        });
 
         Graphics2D g2d = (Graphics2D) g;
         narysujObrazek(g2d);
@@ -39,11 +52,11 @@ public class Surface extends JPanel implements ActionListener {
 
     }
 
-    public void narysujObrazek(Graphics2D g2d) {
+    private void narysujObrazek(Graphics2D g2d) {
         Node n = surfaceSwiat.k.first;
 
         while(n!=null){
-            rysuj(n, g2d);
+            rysujZwierzaka(n, g2d);
             n = n.next;
         }
         surfaceSwiat.k.reset();
@@ -64,7 +77,7 @@ public class Surface extends JPanel implements ActionListener {
         //surfaceSwiat.k.reset();
     }
 
-    public void button(Graphics g){
+    private void button(Graphics g){
         JButton button = new JButton("RUNDA");
         button.setBounds(10, 535, 80,30);
 
@@ -93,23 +106,8 @@ public class Surface extends JPanel implements ActionListener {
         });
         add(buttonQuit);
     }
-    public void buttonDodaj(){
-        JButton buttonDodaj = new JButton("Dodaj");
-        buttonDodaj.setBounds(250,535,80,30);
 
-        buttonDodaj.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                radio.run();
-            }
-        });
-        add(buttonDodaj);
-    }
-
-    private void rysuj(Node n, Graphics2D g2d){
-        int offsetY = 100;
-        int offsetX = 20;
-        int imgHeight = 20;
-        int imgWidth = 20;
+    private void rysujZwierzaka(Node n, Graphics2D g2d){
 
         String nazwa_obrazka = n.organizm.getLabel() + ".png";
 
@@ -125,11 +123,32 @@ public class Surface extends JPanel implements ActionListener {
         doDrawing(g);
         button(g);
         buttonQuit();
-        buttonDodaj();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         repaint();
+    }
+
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        System.out.println(e.getX());
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+    }
+
+    private int[] surfaceConvert(int X, int Y){
+
+        int swiatX = (X - offsetX - 1) / imgWidth;
+        int swiatY = (Y - offsetY - 1) / imgHeight;
+        swiatX = (swiatX >= 0 && swiatX < surfaceSwiat.m.szerokosc )? swiatX : -1;
+        swiatY = (swiatY >= 0 && swiatY < surfaceSwiat.m.wysokosc )? swiatY : -1;
+        System.out.println("X:" + swiatX);
+        System.out.println("Y:" + swiatY);
+        int[] koordynaty = {swiatX, swiatY};
+        return koordynaty;
     }
 }

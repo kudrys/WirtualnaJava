@@ -5,16 +5,16 @@ import java.util.stream.IntStream;
 /**
  * Created by RYchu on 2015-12-18.
  */
-public class Swiat {
-    public Mapa m;
-    public Queue k;
-    public String gatunki;
+class Swiat {
+    Mapa m;
+    Queue k;
+    private String gatunki;
 
-    public Swiat(int x, int y){
+    Swiat(int x, int y){
         this(x, y, false);
     }
 
-    public Swiat (int x, int y , boolean losowane){
+    private Swiat(int x, int y, boolean losowane){
         m = new Mapa(x,y);
         k = new Queue();
         gatunki = "CDGLOTWZ";
@@ -22,21 +22,21 @@ public class Swiat {
             wsadzWylosowaneZwierzaki();
     }
 
-    public int getXfromValue(int value) {
+    private int getXfromValue(int value) {
         return value % m.getSzerokosc();
     }
 
-    public int getYfromValue(int value) {
+    private int getYfromValue(int value) {
         return value / m.getSzerokosc();
     }
-    public void wsadzZWartosci(int value, char zwierzakAscii){
+    void wsadzZWartosci(int value, char zwierzakAscii){
         int x = value%m.getSzerokosc();
         int y = value/m.getSzerokosc();
         //System.out.println("x:" + x + " y:" + y);
         wsadzZwierzakaDoMapy(x, y, zwierzakAscii);
     }
 
-    public void wsadzZwierzakaDoMapy(int x, int y, char zwierzakAscii) {
+    private void wsadzZwierzakaDoMapy(int x, int y, char zwierzakAscii) {
         Organizm organizmWsadzany;
 
         switch (zwierzakAscii) {
@@ -81,7 +81,8 @@ public class Swiat {
         if(organizmWsadzany!=null)
             organizmWsadzany.przypiszXY(x, y);
     }
-    public int[] losowanieWartosci(int dzielnik){
+
+    private int[] losowanieWartosci(int dzielnik){
         Random r = new Random();
         int tabSize = m.getSzerokosc() * m.getWysokosc();
         int iloscWylosowanych = (tabSize)/dzielnik;
@@ -99,7 +100,7 @@ public class Swiat {
         return Arrays.copyOfRange(values, tabSize-iloscWylosowanych, tabSize);
     }
 
-    public char[] losowanieCharow(int dzielnik){
+    private char[] losowanieCharow(int dzielnik){
         Random r = new Random();
         char zwierzakiDoWylosowania[]=gatunki.toCharArray();
         int iloscGatunkow = zwierzakiDoWylosowania.length;
@@ -114,7 +115,7 @@ public class Swiat {
         return wylosowaneChary;
     }
 
-    public void wsadzWylosowaneZwierzaki(){
+    void wsadzWylosowaneZwierzaki(){
         int dzielnik = 5;
         int values[] = losowanieWartosci(dzielnik);
         char chary[] = losowanieCharow(dzielnik);
@@ -124,7 +125,7 @@ public class Swiat {
         }
     }
 
-    public void poruszenie(char kierunek, int x, int y) {
+    private void poruszenie(char kierunek, int x, int y) {
         //System.out.println("start---porusz---");
         Organizm aktualny = m.organizmyTab[x][y];
         int newX = x;
@@ -158,15 +159,15 @@ public class Swiat {
         //System.out.println("end---porusz---");
     }
 
-    public int wylosujPoleDoOkola(int x, int y){
+    private int wylosujPoleDoOkola(int x, int y){
         return wylosujPole(x,y,false);
     }
 
-    public int wylosujWolnePole(int x, int y){
+    private int wylosujWolnePole(int x, int y){
         return wylosujPole(x,y,true);
     }
 
-    public int wylosujPole(int x, int y, boolean mustBeFree){
+    private int wylosujPole(int x, int y, boolean mustBeFree){
         //System.out.println("start-------losojpole----");
         int TempX[] = new int[4];
         int TempY[] = new int[4];
@@ -208,7 +209,7 @@ public class Swiat {
         return wynik;
     }
 
-    char coToZaKierunek(int x, int y, int newx, int newy){
+    private char coToZaKierunek(int x, int y, int newx, int newy){
         //1-w lewo, 2-w dol, 3-w prawo, 4-w gora
         int kierunkiX[]={x,x+1,x,x-1};
         int kierunkiY[]={y-1,y,y+1,y};
@@ -234,12 +235,12 @@ public class Swiat {
         return 'X';
     }
 
-    public void usunZwierzaka(int x, int y){
+    private void usunZwierzaka(int x, int y){
         k.deleteNode(m.organizmyTab[x][y]);
         m.organizmyTab[x][y] = null;
     }
 
-    public void tura(Organizm  aktualny){
+    void tura(Organizm aktualny){
         if(aktualny==null){
             k.reset();
             aktualny = k.first.organizm;
@@ -249,7 +250,7 @@ public class Swiat {
             aktualny.activate();
             return;
         }
-        m.rysujSwiat();
+        //m.rysujSwiat();
         System.out.println();
 
         int aktX = aktualny.getX();
@@ -277,8 +278,8 @@ public class Swiat {
         }
         //poruszanie
         if(aktualny.getOrganizmMark()=='Z' && aktualny.akcja(napotkany)==2){
-            System.out.println("kierunek: " + coToZaKierunek(aktX,aktY,napotkanyX,napotkanyY));
-            System.out.println("napotX:" + napotkanyX + " napotY:" + napotkanyY);
+            //System.out.println("kierunek: " + coToZaKierunek(aktX,aktY,napotkanyX,napotkanyY));
+            //System.out.println("napotX:" + napotkanyX + " napotY:" + napotkanyY);
             poruszenie(coToZaKierunek(aktX,aktY,napotkanyX,napotkanyY),aktX,aktY);
         }
         //rozmnazanie
@@ -309,7 +310,7 @@ public class Swiat {
         }
     }
 
-    public void runda(){
+    void runda(){
         while(k.aktualnyNode !=null){
             Organizm temp = k.aktualnyNode.organizm;
             k.next();
